@@ -12,3 +12,26 @@ def get_database_info():
     user = config['database_info']['user']
     password = config['database_info']['password']
     return name_db, user, password
+
+
+def create_db(curs):
+    curs.execute("""
+    CREATE TABLE IF NOT EXISTS staffs(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(20),
+        lastname VARCHAR(30),
+        email VARCHAR(100)
+        );
+    """)
+    curs.execute("""
+    CREATE TABLE IF NOT EXISTS phonenumbers(
+        number VARCHAR(11) PRIMARY KEY,
+        staff_id INTEGER REFERENCES staffs(id)
+        );
+    """)
+
+
+if __name__ == '__main__':
+    with psycopg2.connect(database=get_database_info()[0], user=get_database_info()[1],
+                          password=get_database_info()[2]) as conn:
+        pass  # вызывайте функции здесь
