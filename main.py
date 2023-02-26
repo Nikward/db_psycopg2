@@ -30,6 +30,11 @@ def create_db(curs):
         );
     """)
 
+    def delete_tables(curs):
+        curs.execute("""
+            DROP TABLE staffs, phonenumbers CASCADE;
+            """)
+
 
 if __name__ == '__main__':
     with psycopg2.connect(database=get_database_info()[0], user=get_database_info()[1],
