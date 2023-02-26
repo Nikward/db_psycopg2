@@ -30,10 +30,11 @@ def create_db(curs):
         );
     """)
 
-    def delete_tables(curs):
-        curs.execute("""
-            DROP TABLE staffs, phonenumbers CASCADE;
-            """)
+
+def delete_tables(curs):
+    curs.execute("""
+        DROP TABLE staffs, phonenumbers CASCADE;
+        """)
 
 
 if __name__ == '__main__':
